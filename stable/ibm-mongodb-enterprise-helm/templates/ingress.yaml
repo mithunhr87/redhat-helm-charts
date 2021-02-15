@@ -8,7 +8,7 @@ apiVersion: extensions/v1beta1
 {{- end }}
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ include "ibm-mongodb-enterprise-helm.fullname" . }}-ingress
   labels:
     {{- include "ibm-mongodb-enterprise-helm.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}

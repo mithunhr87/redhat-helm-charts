@@ -25,6 +25,23 @@ The Helm chart creates the following resources:
 
 ## Configuration
 
+#### Instructions to create PV and allocation ####
+
+Navigate to `pre-req` folder
+
+- Edit pv.yaml to include name of the persistent volume
+- Update storageClassName
+- Update the storage ( default GB ) to be allocated to the persistent volume
+- Update NFS server details
+- Add the path from the nfs server to be mounted
+
+Once the values are updated, create the pv
+```
+$oc create -f pv.yaml
+```
+Note : StorageClassName in values.yaml should be same as the one provided while creating
+persistent volume (pv.yaml)
+
 ## Instructions to deploy this helm chart
 Git clone this repository on your server -
 
@@ -43,9 +60,11 @@ oc project ibm
 
 Update the following variables in values.yaml file -
 
-`adminuser` , `adminpassword` ,`name_database`
+`database.adminuser` , `database.adminpassword` ,`database.name_database`
 
 this information would be leveraged and corresponding custom user/password with superadmin privileges would be created on MongoDB instance.
+
+Also update `global.persistence.claims.name` in valuse.yaml file -
 
 Update SCC in your Namespace, this would be required to allow mongodb container to be executed -
 
@@ -73,23 +92,6 @@ test-ibm-mongodb-enterprise-helm-deployment-7d77767cf8-mspj4   1/1     Running  
 
 ```
 
-
-#### Instructions to create PV and allocation ####
-
-Navigate to pre-req folder 
-
-- Edit pv.yaml to include name of the persistent volume
-- Update StorageClassName
-- Update the storage to be allocated to persistent volume
-- Update nfs server details
-- Add the path of the nfs server to be mounted
-
-Once the values are updated, Create the pv
-```
-$oc create -f pv.yaml
-```
-Note : StorageClassName in values.yaml should be same as the one provided while creating
-persistent volume (pv.yaml)
 
 ##### Common variables that could be modified on the helm chart
 
