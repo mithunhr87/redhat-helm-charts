@@ -64,6 +64,10 @@ Update the following variables in values.yaml file -
 
 this information would be leveraged and corresponding custom user/password with superadmin privileges would be created on MongoDB instance.
 
+Add an hostname/IP for the incoming http traffic by updating `values.ingress.host` variable
+
+Update the `values.global.persistance.claims.storageClassName` variable, which specfies the StorageClassName, Same as the one used by persistent volume                             
+
 Also update `global.persistence.claims.name` in valuse.yaml file -
 
 Update SCC in your Namespace, this would be required to allow mongodb container to be executed -
@@ -115,5 +119,6 @@ test-ibm-mongodb-enterprise-helm-deployment-7d77767cf8-mspj4   1/1     Running  
 |																					  ReadWriteMany — the volume can be mounted as read-write by many nodes       |
 | `values.global.persistance.capacity`                                              | Capacity to be allocated to persistant values claim based on  capacityUnit  |
 | `values.global.persistance.capacityUnit`											| Capacity Unit in Gigabytes or Megabytes                                     |
-| `values.global.persistance.storageClassName`										| StorageClassName which is used for the persistant volume                    |
+| `values.global.persistance.claims.storageClassName`										| StorageClassName which is used for the persistant volume                    |
+| `values.ingress.host`                                       | Ingress hostname/ip to process the incoming http traffic |
 | `values.global.persistance.mountPath`												| Mount Path to be used on the host                                           |
